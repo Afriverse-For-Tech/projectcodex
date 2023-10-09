@@ -146,8 +146,8 @@ Project Link: [https://github.com/afriverse-for-tech/projectcodex](https://githu
 [issues-url]: https://github.com/afriverse-for-tech/projectcodex/issues
 [license-shield]: https://img.shields.io/github/license/afriverse-for-tech/projectcodex.svg?style=for-the-badge
 [license-url]: https://github.com/afriverse-for-tech/projectcodex/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-Discord.svg?style=for-the-badge&logo=discord&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-shield]: https://img.shields.io/badge/Discord-35495E?style=for-the-badge&logo=discord&logoColor=white
+[linkedin-url]: #
 [product-screenshot]: Congratulations.png
 [Next.js]: https://img.shields.io/badge/Node.js-2cac36?style=for-the-badge&logo=nodedotjs&logoColor=white
 [Next-url]: https://nodejs.org/
