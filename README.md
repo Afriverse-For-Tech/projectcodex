@@ -55,7 +55,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](#)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -106,7 +106,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the GPL-20 License. See `LICENSE.txt` for more information.
+Distributed under the GPL-20 License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -115,7 +115,7 @@ Distributed under the GPL-20 License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/@afriversees) - projectcodex@afriverse.lol
+Your Name - [@afriverseES](https://twitter.com/@afriversees) - projectcodex@afriverse.lol
 
 Project Link: [https://github.com/afriverse-for-tech/projectcodex](https://github.com/afriverse-for-tech/projectcodex)
 
