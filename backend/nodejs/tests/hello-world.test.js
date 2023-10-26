@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../app');
 
-describe('GET /', () => {
+describe('GET /api/v1', () => {
   let server; // Declare a variable to hold the server instance
 
   beforeAll(() => {
@@ -15,7 +15,7 @@ describe('GET /', () => {
   });
 
   it('responds with "Hello World"', async () => {
-    const response = await request(app).get('/');
+    const response = await request(app).get('/api/v1');
     expect(response.status).toBe(200);
     expect(response.text).toBe('Hello World');
   });
