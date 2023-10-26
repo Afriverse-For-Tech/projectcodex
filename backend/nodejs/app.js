@@ -9,12 +9,12 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-// Route for the root URL  
-app.get('/', (req, res) => {
+// Route for the base URL  
+app.get('/api/v1', (req, res) => {
   res.send('Hello World');
 });
 
-// Start the server
+// Start the server: Comment this code out if you're running tests
 // app.listen(port, () => {
 //   console.log(`Server started on port ${port}`);
 // });
