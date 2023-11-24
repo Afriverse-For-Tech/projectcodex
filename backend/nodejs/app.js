@@ -1,6 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const appwrite = require("node-appwrite")
+const waitlistRouter = require('./src/routes/waitlist')
+
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -9,9 +12,14 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-// Route for the base URL  
-app.get('/api/v1', (req, res) => {
-  res.send('Hello World');
+const v1Router = express.Router()
+v1Router.use("/waitlist", waitlistRouter)
+
+
+app.use('/api/v1', v1Router)
+
+app.get('/', (req, res) => {
+  res.send('Welcome to the API! Please visit /api-docs to see our documentation.');
 });
 
 // Start the server: Comment this code out if you're running tests
