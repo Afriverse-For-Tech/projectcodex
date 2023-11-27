@@ -1,0 +1,8 @@
+<div style="height:100%; width:100%; text-align: center;">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">submit</button>
+    </form>
+
+</div>
