@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "target": "ES2020",                                 // Set the JavaScript language version to target
+      "module": "commonjs",                               // Use the CommonJS module system
+      "outDir": "./dist",                                 // Output directory for compiled files
+      "strict": true,                                     // Enable strict type-checking
+      "esModuleInterop": true,                            // Enable ES6 import/export interoperability
+      "forceConsistentCasingInFileNames": true,           // Ensure consistent casing in imports
+      "skipLibCheck": true,                                // Skip type checking of .d.ts files
+      "resolveJsonModule": true
+    },
+    "include": [
+      "./src/**/*.ts",                                    // Specify TypeScript files to include
+      "src/app.ts"
+    ],
+    "exclude": [
+      "./dist"                                            // Specify directories/files to exclude from compilation
+    ]
+  }
