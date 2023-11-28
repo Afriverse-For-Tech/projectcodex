@@ -1,15 +1,19 @@
 const { Router } = require("express");
 const multer = require("multer");
-const fs = require("fs");
-const uploadModel = require("../models/upload");
+const Appwrite = require('node-appwrite');
+const appwriteClient = require("../utils/appwriteClient");
 
 //init multer to store to disk, this means that req.file.path will be available
 const fileUpload = multer({
-    storage: multer.memoryStorage(),
-    limits: { fileSize: 5000000 }, //5MB
+    storage: multer.diskStorage({}),
+    // limits: { fileSize: 5000000 }, //5MB enable and configure file upload limit
 });
 
+//Init route
 const uploadController = Router();
+
+//get bucket ID
+const bucketID = process.env.APPWRITE_BUCKET_ID;
 
 //Handle file upload
 uploadController.post("/upload", fileUpload.single("file"), async (req, res) => {
@@ -25,7 +29,7 @@ uploadController.post("/upload", fileUpload.single("file"), async (req, res) => 
         }
 
         //destructure object from req.file
-        const { originalname, mimetype, buffer, size } = req.file ?? {};
+        const { originalname, filename, mimetype, path, size } = req.file ?? {};
 
         //check if size does not exist or if it is too small
         if (!size || size <= 0) {
@@ -57,50 +61,35 @@ uploadController.post("/upload", fileUpload.single("file"), async (req, res) => 
             });
         }
 
-        //Timestamp to make the file name unique
-        const timeStamp = Date.now();
-        //the new file name
-        const newFileName = timeStamp + "-" + originalname;
-        // Define the destination path
-        const destinationPath = `./public/${newFileName}`;
+        //Init Appwrite storage service
+        const storageService = new Appwrite.Storage(appwriteClient)
+        //The file to upload 
+        const fileToUpload = Appwrite.InputFile.fromPath(path, originalname)
 
-        //save the file name in the DB
-        const savedDoc = await new uploadModel({
-            userId: "12345", //replace with actual userId from loggedIn user session
-            fileName: newFileName,
-        }).save();
-
-        //check if document was saved
-        if (!savedDoc) {
-            return res.status(400).json({
-                success: false,
-                error: {
-                    message: "This file was not uploaded, please try again",
-                },
+        // send request
+        storageService
+            .createFile(bucketID, filename, fileToUpload)
+            .then(response => {
+                //return success
+                return res.status(200).json({
+                    success: true,
+                    message: "This ZIP file was uploaded successfully",
+                    data : {
+                        ...response
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error uploading file:', error);
+                //return error
+                return res.status(400).json({
+                    success: false,
+                    error: {
+                        message: "This file was not uploaded, please try again",
+                    }
+                });
             });
-        }
-
-        //check if file exists
-        if (!fs.existsSync(destinationPath)) {
-            //save the file locally on the system
-            fs.writeFileSync(destinationPath, buffer);
-            //return success
-            return res.status(200).json({
-                success: true,
-                message: "This ZIP file was uploaded successfully",
-                data: {
-                    id : savedDoc._id //Object ID from the database
-                }
-            });
-        } else {
-            //The file exists already
-            return res.status(400).json({
-                success: false,
-                error: {
-                    message: "The file you are trying to save exists already",
-                },
-            });
-        }
+            
     } catch (err) {
         console.log(err);
         return res.status(500).json({
