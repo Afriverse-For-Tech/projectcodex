@@ -1,5 +1,6 @@
 import WaitlistModel from '../models/waitlist.model';
 import EmailService from '../utils/email.service';
+import logger from '../logging/winston.config';
 
 class WaitlistService {
   private waitlistModel: WaitlistModel;
@@ -13,7 +14,8 @@ class WaitlistService {
         await this.waitlistModel.addEmailToWaitlist(email);
         await this.sendWelcomeEmail(email);
     } catch (error) {
-      console.error('Error joining waitlist:', error);
+        logger.error("Error joining waitlist: " + error);
+        throw error;
     }
   }
 
@@ -29,7 +31,7 @@ async checkIfEmailExists(email: string): Promise<boolean> {
     try {
       await EmailService.sendEmail(email, subject, html);
     } catch (error) {
-      console.error('Error sending welcome email:', error);
+      logger.error("Error sending welcome email: " + error);
       throw error;
     }
   }

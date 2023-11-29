@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@types/express-winston": "^4.0.0",
+    "@types/winston": "^2.4.4",
+    "express-winston": "^4.2.0",
+    "winston": "^3.11.0"
+  }
+}
