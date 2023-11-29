@@ -1,4 +1,4 @@
-import client from "../databases/appwrite.db";
+import client from "./appwrite.config";
 import sdk from "node-appwrite";
 
 const databases = new sdk.Databases(client);

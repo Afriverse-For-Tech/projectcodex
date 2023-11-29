@@ -1,4 +1,4 @@
-import client from "../config/databases/appwrite.db";
+import client from "../config/appwrite.config";
 import WaitlistDocument from "../interfaces/waitlist.interface";
 import sdk from "node-appwrite";
 
