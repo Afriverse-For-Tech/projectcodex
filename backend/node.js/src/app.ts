@@ -16,7 +16,11 @@ app.use(expressWinston.logger({ winstonInstance: logger }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use("/waitlist", WaitlistRouter);
+const v1Router = express.Router();
+v1Router.use("/waitlist", WaitlistRouter);
+app.use("/api/v1", v1Router);
+
+
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
